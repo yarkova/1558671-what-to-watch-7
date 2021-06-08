@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CatalogGenre from '../catalog-genres/catalog-genres.jsx';
 import SmallFilmCard from '../small-film-card/small-film-card.jsx';
 
-function MainScreen ({mainFilm, films}) {
-
+function MainScreen ({genres, mainFilm, films}) {
 
   return (
     <body>
@@ -106,36 +106,7 @@ function MainScreen ({mainFilm, films}) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
+            {genres.map((genre) => <CatalogGenre key={genre.item} item={genre.item}/>)}
           </ul>
 
           <div className="catalog__films-list">
@@ -167,6 +138,9 @@ function MainScreen ({mainFilm, films}) {
 }
 
 MainScreen.propTypes = {
+  genres: PropTypes.arrayOf({
+    item: PropTypes.string.isRequired,
+  }).isRequired,
   mainFilm: {
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

@@ -2,6 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
 
+const GENRES = [
+  {item: 'All genres'},
+  {item: 'Comedies'},
+  {item: 'Crime'},
+  {item: 'Documentary'},
+  {item: 'Dramas'},
+  {item: 'Horror'},
+  {item: 'Kids & Family'},
+  {item: 'Romance'},
+  {item: 'Sci-Fi'},
+  {item: 'Thrillers'}];
+
 const MAIN_FILM = {
   src: 'img/the-grand-budapest-hotel-poster.jpg',
   title: 'The Grand Budapest Hotel',
@@ -75,6 +87,7 @@ const FILMS = [
 ReactDOM.render(
   <React.StrictMode>
     <App
+      genres={GENRES}
       mainFilm={MAIN_FILM}
       films={FILMS}
     />

@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import MainScreen from '../main-screen/main-screen.jsx';
 //import SmallFilmCard from '../small-film-card/small-film-card.jsx';
 
-function App({mainFilm, films}) {
-  return (<MainScreen mainFilm={mainFilm} films={films} />);
+function App({genres, mainFilm, films}) {
+  return (<MainScreen genres={genres} mainFilm={mainFilm} films={films} />);
 }
 
 App.propTypes = {
+  genres: PropTypes.arrayOf({
+    item: PropTypes.string.isRequired,
+  }).isRequired,
   mainFilm: {
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
