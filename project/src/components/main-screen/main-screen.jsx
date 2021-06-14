@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CatalogGenre from '../catalog-genres/catalog-genres.jsx';
 import SmallFilmCard from '../small-film-card/small-film-card.jsx';
+import Logo from '../logo/logo';
 
 function MainScreen ({genres, mainFilm, films}) {
 
@@ -49,13 +50,7 @@ function MainScreen ({genres, mainFilm, films}) {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo />
 
           <ul className="user-block">
             <li className="user-block__item">
@@ -120,13 +115,7 @@ function MainScreen ({genres, mainFilm, films}) {
         </section>
 
         <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo />
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
