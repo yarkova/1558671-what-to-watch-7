@@ -83,6 +83,17 @@ const FILMS = [
     src: 'img/midnight-special.jpg',
   }];
 
+const RATINGS = [
+  {id:'10'},
+  {id:'9'},
+  {id:'8'},
+  {id:'7'},
+  {id:'6'},
+  {id:'5'},
+  {id:'4'},
+  {id:'3'},
+  {id:'2'},
+  {id:'1'}];
 
 ReactDOM.render(
   <React.StrictMode>
@@ -90,6 +101,7 @@ ReactDOM.render(
       genres={GENRES}
       mainFilm={MAIN_FILM}
       films={FILMS}
+      ratings={RATINGS}
     />
   </React.StrictMode>,
   document.getElementById('root'));

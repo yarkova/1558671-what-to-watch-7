@@ -11,31 +11,42 @@ import AddReviewScreen from '../add-review-screen/add-review-screen.jsx';
 import PlayerScreen from '../player-screen/player-screen.jsx';
 import NotFoundScreen from '../not-found-screen/not-found-screen.jsx';
 
-function App({genres, mainFilm, films}) {
+
+function App({genres, mainFilm, films, ratings}) {
+  const routes = [{
+    path: AppRoute.MAIN,
+    component: <MainScreen genres={genres} mainFilm={mainFilm} films={films} ratings={ratings} />,
+  },
+  {
+    path: AppRoute.LOGIN,
+    component: <LoginScreen />,
+  },
+  {
+    path: AppRoute.MY_LIST,
+    component: <MyListScreen films={films}/>,
+  },
+  {
+    path: AppRoute.FILM,
+    component: <FilmScreen films={films} />,
+  },
+  {
+    path: AppRoute.ADD_REVIEW,
+    component: <AddReviewScreen ratings={ratings}/>,
+  },
+  {
+    path: AppRoute.PLAYER,
+    component: <PlayerScreen />,
+  },
+  {
+    path: AppRoute.NOTFOUND,
+    component: <NotFoundScreen />,
+  },
+  ];
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.MAIN}>
-          <MainScreen genres={genres} mainFilm={mainFilm} films={films} />
-        </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <LoginScreen />
-        </Route>
-        <Route exact path={AppRoute.MY_LIST}>
-          <MyListScreen />
-        </Route>
-        <Route exact path={AppRoute.FILM}>
-          <FilmScreen />
-        </Route>
-        <Route exact path={AppRoute.ADD_REVIEW}>
-          <AddReviewScreen />
-        </Route>
-        <Route exact path={AppRoute.PLAYER}>
-          <PlayerScreen />
-        </Route>
-        <Route>
-          <NotFoundScreen />
-        </Route>
+
+        {routes.map((route) => <Route exact path={route.path} key={route.path}>{route.component}</Route>)}
       </Switch>
     </BrowserRouter>
   );
@@ -54,6 +65,10 @@ App.propTypes = {
   films: PropTypes.arrayOf({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
+  }).isRequired,
+  ratings: PropTypes.arrayOf({
+    id: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
   }).isRequired,
 };
 
