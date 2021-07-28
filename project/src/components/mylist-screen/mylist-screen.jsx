@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import SmallFilmCard from '../small-film-card/small-film-card.jsx';
 import Logo from '../logo/logo';
+import FilmList from '../films-list/films-list.jsx';
+import LogoFooter from '../logo-footer/logo-footer.jsx';
+import {filmPropType} from '../../propTypes/film.prop.js';
 
 function MyListScreen ({films}) {
   return (
@@ -26,27 +27,15 @@ function MyListScreen ({films}) {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
-          {films.slice(0,8).map((film) => <SmallFilmCard key={film.title} title={film.title} src={film.src}/>)}
-        </div>
+        <FilmList films={films} />
       </section>
-
-      <footer className="page-footer">
-        <Logo />
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <LogoFooter />
     </div>
   );
 }
 
 MyListScreen.propTypes = {
-  films: PropTypes.arrayOf({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-  }).isRequired,
+  films: filmPropType.isRequired,
 };
 
 

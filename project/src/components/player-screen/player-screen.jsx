@@ -1,9 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import PlayButton from '../play-button/play-button';
+import PlayerVideo from '../player-video/player-video.jsx';
+import {filmPropType} from '../../propTypes/film.prop.js';
 
-function PlayerScreen () {
+function PlayerScreen ({film}) {
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      < PlayerVideo film={film}/>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -11,19 +15,14 @@ function PlayerScreen () {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style="left: 30%;">Toggler</div>
+            <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{film.runTime}</div>
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkhref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
-          <div className="player__name">Transpotting</div>
+          <PlayButton/>
+          <div className="player__name">{film.name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
@@ -36,5 +35,9 @@ function PlayerScreen () {
     </div>
   );
 }
+
+PlayerScreen.propTypes = {
+  film: PropTypes.shape(filmPropType).isRequired,
+};
 
 export default PlayerScreen;

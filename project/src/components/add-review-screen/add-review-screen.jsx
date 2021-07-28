@@ -2,9 +2,14 @@ import React from 'react';
 import Logo from '../logo/logo';
 import PropTypes from 'prop-types';
 import RatingScreen from '../rating-screen/rating-screen.jsx';
+//import RatingValue from '../../const';
 
 function AddReviewScreen ({ratings}) {
   return (
+
+  //const setRating = (evt) => setReview({...review, rating: evt.target.value});
+  //const setComment = (evt) => setReview({...review, comment: evt.target.value});
+
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
@@ -45,15 +50,15 @@ function AddReviewScreen ({ratings}) {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
+        <form action="#" className="add-review__form" >
+          <div className="rating" >
             {ratings.map((rating) => <RatingScreen key={rating.id} id={rating.id} value={rating.id}/>)}
           </div>
 
           <div className="add-review__text">
             <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
+              <button className="add-review__btn" type="submit" >Post</button>
             </div>
 
           </div>

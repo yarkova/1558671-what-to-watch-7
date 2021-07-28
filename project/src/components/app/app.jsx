@@ -11,8 +11,12 @@ import AddReviewScreen from '../add-review-screen/add-review-screen.jsx';
 import PlayerScreen from '../player-screen/player-screen.jsx';
 import NotFoundScreen from '../not-found-screen/not-found-screen.jsx';
 
+import {filmsPropTypes} from '../../propTypes/film.prop.js';
+
 
 function App({genres, mainFilm, films, ratings}) {
+//  const getFilmsFilter = (param) => films.filter((item) => item.id === +param.match.params.id)[0];
+
   const routes = [{
     path: AppRoute.MAIN,
     component: <MainScreen genres={genres} mainFilm={mainFilm} films={films} ratings={ratings} />,
@@ -23,11 +27,11 @@ function App({genres, mainFilm, films, ratings}) {
   },
   {
     path: AppRoute.MY_LIST,
-    component: <MyListScreen films={films}/>,
+    component: <MyListScreen films={films} />,
   },
   {
     path: AppRoute.FILM,
-    component: <FilmScreen films={films} />,
+    component: <FilmScreen film={films}/>,
   },
   {
     path: AppRoute.ADD_REVIEW,
@@ -35,7 +39,7 @@ function App({genres, mainFilm, films, ratings}) {
   },
   {
     path: AppRoute.PLAYER,
-    component: <PlayerScreen />,
+    component: <PlayerScreen film={films}/>,
   },
   {
     path: AppRoute.NOTFOUND,
@@ -62,10 +66,7 @@ App.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   },
-  films: PropTypes.arrayOf({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-  }).isRequired,
+  films: filmsPropTypes.isRequired,
   ratings: PropTypes.arrayOf({
     id: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,

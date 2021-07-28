@@ -1,10 +1,15 @@
 import React from 'react';
+import {useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CatalogGenre from '../catalog-genres/catalog-genres.jsx';
-import SmallFilmCard from '../small-film-card/small-film-card.jsx';
 import Logo from '../logo/logo';
+import FilmList from '../films-list/films-list.jsx';
+import LogoFooter from '../logo-footer/logo-footer.jsx';
+import {filmPropType, filmsPropTypes} from '../../propTypes/film.prop.js';
 
-function MainScreen ({genres, mainFilm, films}) {
+function MainScreen ({genres, mainFilm, films, film}) {
+  const history = useHistory();
+  const handlePlayButtonClick = () => {history.push(`/player/${film.id}`);};
 
   return (
     <body>
@@ -67,18 +72,18 @@ function MainScreen ({genres, mainFilm, films}) {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={mainFilm.src} alt={mainFilm.title} width="218" height="327" />
+              <img src={films.previewImage} alt={films.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{mainFilm.title}</h2>
+              <h2 className="film-card__title">{films.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{mainFilm.genre}</span>
-                <span className="film-card__year">{mainFilm.year}</span>
+                <span className="film-card__genre">{films.genre}</span>
+                <span className="film-card__year">{films.year}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={handlePlayButtonClick}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkhref="#play-s"></use>
                   </svg>
@@ -104,23 +109,14 @@ function MainScreen ({genres, mainFilm, films}) {
             {genres.map((genre) => <CatalogGenre key={genre.item} item={genre.item}/>)}
           </ul>
 
-          <div className="catalog__films-list">
-            {films.map((film) => <SmallFilmCard key={film.title} title={film.title} src={film.src}/>)}
-          </div>
+          <FilmList films={films} />
 
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
-
-        <footer className="page-footer">
-          <Logo />
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <LogoFooter />
       </div>
     </body>
   );
@@ -136,10 +132,8 @@ MainScreen.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
   },
-  films: PropTypes.arrayOf({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-  }).isRequired,
+  films: filmsPropTypes.isRequired,
+  film: filmPropType.isRequired,
 };
 
 export default MainScreen;
